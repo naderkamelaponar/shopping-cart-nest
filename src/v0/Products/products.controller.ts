@@ -1,5 +1,4 @@
 import { Controller, Get , Post,Body,Param,Patch,Delete } from '@nestjs/common';
-import { title } from 'process';
 import { ProductsService } from './products.service';
 
 @Controller('products')
@@ -8,10 +7,12 @@ export class ProductsController {
 @Post()
 insertProduct(@Body('title')title:string,@Body('description')description:string,@Body('price')price:number){
 const newProd= this.productsService.insertProduct(title,description,price)
-return {id:newProd}
+return {id:newProd,title,description,price}
 }
 @Get()
-getProduct(){
-  return {get:'Product'}
+getAllProducts(){
+  const prodList=this.productsService.allProducts()
+  return (prodList);
 }
+
 }

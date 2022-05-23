@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
- class Product {
+ export class Product {
   constructor (
     public id:string,
     public title:string,
@@ -16,5 +16,8 @@ export class ProductsService {
     const newProduct = new Product(prodId,title,desc,price)
     this.products.push(newProduct)
     return prodId
+  }
+  allProducts(){
+    return [...this.products]
   }
 }
